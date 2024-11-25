@@ -28,10 +28,13 @@ while running:
     if len(tasklist) != 0:
       display_tasks()
       d = int(input("Please select the number of task that you want to delete : "))
-      dt = tasklist.pop(d-1)
-      print("\nTask -",dt, "was remove from the list!")
+      if d > 0 and d <= len(tasklist):        
+        dt = tasklist.pop(d-1)
+        print("\nTask -",dt, "was remove from the list!")
+      else:
+        print("Invalid number! Please try again.\n")
     else:
-      "There is no task to remove! Please add more task instead."
+      print("There is no task to remove! Please add more task instead.")
   else:
     print("There is no command for that input. Please try again.\n")
    
