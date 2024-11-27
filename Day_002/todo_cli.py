@@ -18,7 +18,7 @@ def display_tasks():
 # Continuously running program.
 while running:
   tasklist = display_tasks()
-  print("\nA = Add task\nD = Delete task\nQ = Quit\n")
+  print("\nA = Add task / D = Delete task / Q = Quit\n")
   action = input("Please enter your action : ")
 
   if action.lower() == "a":
@@ -33,10 +33,14 @@ while running:
     running = False
   elif action.lower() == "d":
     if len(tasklist) != 0:
-      display_tasks()
+      tasklist = display_tasks()
       d = int(input("Please select the number of task that you want to delete : "))
       if d > 0 and d <= len(tasklist):        
         dt = tasklist.pop(d-1)
+
+        with open("tasklist.txt", "w") as file:
+          file.writelines(tasklist)
+
         print("\nTask -",dt, "was remove from the list!")
       else:
         print("Invalid number! Please try again.\n")
